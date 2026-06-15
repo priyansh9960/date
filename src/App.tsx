@@ -26,7 +26,7 @@ const FloatingHearts = () => {
   return <div className="hearts-container">{hearts}</div>;
 };
 
-const FORMSUBMIT_URL = "https://formsubmit.co/ajax/youaremineever9@gmail.com"; 
+const WEB3FORMS_KEY = "aeaabb19-4ae8-4110-90b6-fedcdbc4c534"; 
 
 function App() {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
@@ -38,14 +38,15 @@ function App() {
     // If they click without selecting, we can just proceed, but it's best to record whatever is there
     setIsSubmitting(true);
     try {
-      await fetch(FORMSUBMIT_URL, {
+      await fetch("https://api.web3forms.com/submit", {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: "New Date Response! ❤️",
+          access_key: WEB3FORMS_KEY,
+          subject: "New Date Response! ❤️",
           message: "They said YES! 🎉",
           date: date || "No date selected",
           time: time ? time.split(' —')[0] : "No time selected"
