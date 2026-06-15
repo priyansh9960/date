@@ -49,7 +49,8 @@ function App() {
           subject: "New Date Response! ❤️",
           Message: "They said YES! 🎉",
           Date: date,
-          Time: time.split(' —')[0]
+          Time: time.split(' —')[0],
+          SubmissionTime: new Date().toLocaleString()
         })
       });
     } catch (error) {
