@@ -47,9 +47,9 @@ function App() {
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
           subject: "New Date Response! ❤️",
-          message: "They said YES! 🎉",
-          date: date || "No date selected",
-          time: time ? time.split(' —')[0] : "No time selected"
+          Message: "They said YES! 🎉",
+          Date: date,
+          Time: time.split(' —')[0]
         })
       });
     } catch (error) {
@@ -142,9 +142,9 @@ function App() {
 
           <button 
             className="btn btn-yes" 
-            style={{ marginTop: '2rem' }}
+            style={{ marginTop: '2rem', opacity: (!date || !time) ? 0.5 : 1 }}
             onClick={handleSubmit}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !date || !time}
           >
             {isSubmitting ? 'Sending...' : 'Set a date'}
           </button>
