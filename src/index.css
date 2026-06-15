@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Fredoka', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #ffb6c1; /* Light pink */
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f3f4f6; /* Gray background */
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 40px;
+  box-shadow: 0 20px 40px rgba(255, 182, 193, 0.35), 0 5px 15px rgba(0,0,0,0.05);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  min-height: 300px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 1.5rem 1rem;
+    width: 95%;
+  }
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #ff9ebd;
+  text-shadow: 0 0 40px rgba(255, 158, 189, 0.3);
+  animation: float 6s ease-in-out infinite;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  height: 60px; /* reserve height so container doesn't collapse */
+}
+
+.btn {
+  padding: 0.5em 1.2em;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.btn-yes {
+  background: transparent;
+  color: #ff85a2;
+  border: 2px solid #ff85a2;
+  box-shadow: none;
+}
+
+.btn-yes:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 133, 162, 0.25);
+  background: rgba(255, 133, 162, 0.08);
+  border-color: #ff6b8f;
+  color: #ff6b8f;
+}
+
+.btn-no {
+  background: transparent;
+  color: #ff85a2;
+  border: 2px solid #ff85a2;
+  box-shadow: none;
+  position: absolute;
+  /* Start near center, beside YES */
+  left: 55%;
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.success-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ff9ebd;
+  margin-bottom: 2rem;
+}
+
+.heart {
+  font-size: 5rem;
+  color: #f472b6;
+  animation: pulse 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(244, 114, 182, 0.5));
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10vh;
+  color: #ffb6c1;
+  opacity: 0;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(30px) rotate(20deg);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(-30px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+.btn-next {
+  background: transparent;
+  color: #ff85a2;
+  border: 2px solid #ff85a2;
+  padding: 0.5em 1.2em;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-next:hover {
+  background: rgba(255, 133, 162, 0.08);
+  color: #ff6b8f;
+  border-color: #ff6b8f;
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px rgba(255, 133, 162, 0.25);
+}
+
+.date-picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+.input-group label {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.date-input, .time-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  color: #555;
+  font-family: inherit;
+  font-size: 1.05rem;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-sizing: border-box;
+  appearance: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.time-input {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffb6c1%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem top 50%;
+  background-size: 0.8rem auto;
+}
+
+.date-input:hover, .time-input:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 158, 189, 0.2);
+}
+
+.date-input:focus, .time-input:focus {
+  border-color: #ff9ebd;
+  box-shadow: 0 0 15px rgba(255, 158, 189, 0.4);
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Style the native option dropdown to look a bit better if supported */
+.time-input option {
+  background: #ffffff;
+  color: #333;
+  padding: 10px;
+}
