@@ -32,6 +32,8 @@ function App() {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+  const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
@@ -48,6 +50,8 @@ function App() {
           access_key: WEB3FORMS_KEY,
           subject: "New Date Response! ❤️",
           Message: "They said YES! 🎉",
+          Name: name,
+          Mobile: mobile,
           Date: date,
           Time: time.split(' —')[0],
           SubmissionTime: new Date().toLocaleString()
@@ -126,6 +130,16 @@ function App() {
           <div className="title" style={{ marginBottom: '2rem' }}>So.... when are you free ?</div>
           
           <div className="input-group">
+            <label>Your Name:</label>
+            <input type="text" className="text-input" placeholder="Enter your name" value={name} onChange={e => setName(e.target.value)} />
+          </div>
+
+          <div className="input-group">
+            <label>Mobile Number:</label>
+            <input type="tel" className="text-input" placeholder="Enter your number" value={mobile} onChange={e => setMobile(e.target.value)} />
+          </div>
+
+          <div className="input-group">
             <label>Pick a date:</label>
             <input type="date" className="date-input" value={date} onChange={e => setDate(e.target.value)} />
           </div>
@@ -143,9 +157,9 @@ function App() {
 
           <button 
             className="btn btn-yes" 
-            style={{ marginTop: '2rem', opacity: (!date || !time) ? 0.5 : 1 }}
+            style={{ marginTop: '2rem', opacity: (!date || !time || !name || !mobile) ? 0.5 : 1 }}
             onClick={handleSubmit}
-            disabled={isSubmitting || !date || !time}
+            disabled={isSubmitting || !date || !time || !name || !mobile}
           >
             {isSubmitting ? 'Sending...' : 'Set a date'}
           </button>
