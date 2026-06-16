@@ -50,10 +50,10 @@ function App() {
           access_key: WEB3FORMS_KEY,
           subject: "New Date Response! ❤️",
           Message: "They said YES! 🎉",
-          Name: name,
-          Mobile: mobile,
-          Date: date,
-          Time: time.split(' —')[0],
+          "Contact Name": name,
+          "Contact Number": mobile,
+          "Chosen Date": date,
+          "Chosen Time": time.split(' —')[0],
           SubmissionTime: new Date().toLocaleString()
         })
       });
